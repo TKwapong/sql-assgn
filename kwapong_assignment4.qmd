@@ -46,6 +46,7 @@ We can look at the available tables in this database using `dbListTables`.
 **Note**: When you run this code, you will be sent to a browser and have to give Google permissions to Tidyverse API Packages. **Make sure you select all to give access or else your code will not run.**
 
 ```{r}
+#| message: false 
 dbListTables(con)
 ```
 
@@ -57,7 +58,7 @@ Write a first query that counts the number of rows of the \`crime\` table in the
 
 ```{sql connection = con}
 SELECT count(primary_type) AS primary_cnt, count(*) AS overall_cnt
--- as helpsv renasme
+-- as helps rename
 FROM crime
 WHERE year = 2016
 LIMIT 10;
@@ -68,7 +69,7 @@ Next, count the number of arrests grouped by `primary_type` in 2016. Note that i
 
 ```{sql connection = con}
 SELECT primary_type, count(arrest) AS arrests_cnt
--- as helpsv renasme
+-- as helps rename
 FROM crime
 WHERE year = 2016 AND arrest = TRUE
 GROUP BY primary_type
